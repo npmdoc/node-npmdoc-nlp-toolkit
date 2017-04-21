@@ -1,0 +1,1272 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+    >nlp-toolkit (v0.2.6)</a>
+</h1>
+<h4>This module covers some basic nlp principles and implementations. Every implementation in this module is written as stream to only hold that data in memory that is currently processed at any step.</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nlp-toolkit">module nlp-toolkit</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.crossValidation">
+            function <span class="apidocSignatureSpan">nlp-toolkit.</span>crossValidation
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.divide">
+            function <span class="apidocSignatureSpan">nlp-toolkit.</span>divide
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.frequency">
+            function <span class="apidocSignatureSpan">nlp-toolkit.</span>frequency
+            <span class="apidocSignatureSpan">(text, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.idf">
+            function <span class="apidocSignatureSpan">nlp-toolkit.</span>idf
+            <span class="apidocSignatureSpan">(text, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.prepare">
+            function <span class="apidocSignatureSpan">nlp-toolkit.</span>prepare
+            <span class="apidocSignatureSpan">(fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.serialize">
+            function <span class="apidocSignatureSpan">nlp-toolkit.</span>serialize
+            <span class="apidocSignatureSpan">(filename)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.stemmer">
+            function <span class="apidocSignatureSpan">nlp-toolkit.</span>stemmer
+            <span class="apidocSignatureSpan">(text, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.stopwords">
+            function <span class="apidocSignatureSpan">nlp-toolkit.</span>stopwords
+            <span class="apidocSignatureSpan">(text, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.tokenizer">
+            function <span class="apidocSignatureSpan">nlp-toolkit.</span>tokenizer
+            <span class="apidocSignatureSpan">(text, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">nlp-toolkit.</span>calculate</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">nlp-toolkit.</span>classifiers</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">nlp-toolkit.</span>components</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">nlp-toolkit.</span>filters</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nlp-toolkit.calculate">module nlp-toolkit.calculate</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.calculate.accuracy">
+            function <span class="apidocSignatureSpan">nlp-toolkit.calculate.</span>accuracy
+            <span class="apidocSignatureSpan">(data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.calculate.derivation">
+            function <span class="apidocSignatureSpan">nlp-toolkit.calculate.</span>derivation
+            <span class="apidocSignatureSpan">(data, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.calculate.features">
+            function <span class="apidocSignatureSpan">nlp-toolkit.calculate.</span>features
+            <span class="apidocSignatureSpan">(data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.calculate.texts">
+            function <span class="apidocSignatureSpan">nlp-toolkit.calculate.</span>texts
+            <span class="apidocSignatureSpan">(data, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nlp-toolkit.classifiers">module nlp-toolkit.classifiers</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.classifiers.bayes">
+            function <span class="apidocSignatureSpan">nlp-toolkit.classifiers.</span>bayes
+            <span class="apidocSignatureSpan">(trainingSet)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nlp-toolkit.components">module nlp-toolkit.components</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.components.FreqDist">
+            function <span class="apidocSignatureSpan">nlp-toolkit.components.</span>FreqDist
+            <span class="apidocSignatureSpan">(_text)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.components.Idf">
+            function <span class="apidocSignatureSpan">nlp-toolkit.components.</span>Idf
+            <span class="apidocSignatureSpan">(freqDists)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nlp-toolkit.filters">module nlp-toolkit.filters</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.filters.max">
+            function <span class="apidocSignatureSpan">nlp-toolkit.filters.</span>max
+            <span class="apidocSignatureSpan">(value)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nlp-toolkit.filters.min">
+            function <span class="apidocSignatureSpan">nlp-toolkit.filters.</span>min
+            <span class="apidocSignatureSpan">(value)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nlp-toolkit" id="apidoc.module.nlp-toolkit">module nlp-toolkit</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.crossValidation" id="apidoc.element.nlp-toolkit.crossValidation">
+        function <span class="apidocSignatureSpan">nlp-toolkit.</span>crossValidation
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function crossValidation(options) {
+  options = options || {};
+  var classifiers = options.classifiers || [];
+  classifiers = [].concat(classifiers);
+  var results = [];
+  return through2.obj(function (chunk, enc, callback) {
+    results = classifiers.map(function (classifier) {
+      return chunk.map(function (el, index) {
+        var testData = [].concat.apply([], chunk.slice(index, index+1));
+        var trainingData = [].concat.apply([], chunk.slice(0, index).concat(chunk.slice(index+1)));
+        return validateClassifier({
+          testSet: testData,
+          trainingSet: trainingData,
+          classifier: classifier
+        });
+      });
+    });
+    return callback();
+  }, function (callback) {
+    this.push(results);
+    return callback();
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.divide" id="apidoc.element.nlp-toolkit.divide">
+        function <span class="apidocSignatureSpan">nlp-toolkit.</span>divide
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function divide(options) {
+
+  options = options || {};
+  var sets = options.sets || [1, 1];
+  var maxItems = +options.maxItems;
+  var numSlots = sets.reduce(function(pv, cv) { return pv + cv; }, 0);
+  var slots = new Array(numSlots);
+
+  debug(&#x27;sets&#x27;, sets);
+
+  var done = options.done || function() {};
+  return through2.obj(function (chunk, enc, callback) {
+    var position = Math.floor(Math.random() * slots.length);
+    if (!slots[position]) {
+      slots[position] = [];
+    }
+    var slot = slots[position];
+    slot[slot.length] = chunk;
+    return callback();
+  }, function (callback) {
+    if (maxItems) {
+      maxItems = maxItems / numSlots;
+      slots = slots.map(function (slot) {
+        var _slot = _.shuffle(slot);
+        var _featureCounter = {};
+        return _slot.filter(function (item) {
+          if (!_featureCounter.hasOwnProperty(item.feature)) {
+            _featureCounter[item.feature] = 0;
+          }
+          _featureCounter[item.feature] += 1;
+          return (_featureCounter[item.feature] &#x3c;= maxItems);
+        });
+      });
+    }
+    this.push(slots);
+    return callback();
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.frequency" id="apidoc.element.nlp-toolkit.frequency">
+        function <span class="apidocSignatureSpan">nlp-toolkit.</span>frequency
+        <span class="apidocSignatureSpan">(text, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function frequency(text, options) {
+
+  if (!options &#x26;&#x26; Object.prototype.toString.call(text) !== &#x27;[object Array]&#x27;) {
+    options = text;
+    text = &#x27;&#x27;;
+  }
+
+  options = options || {};
+
+  if (text) {
+    return FreqDist(text);
+  }
+
+  var _freq = FreqDist();
+
+  return through2.obj(function (chunk, enc, callback) {
+
+    var _chunk = (typeof chunk === &#x27;object&#x27; &#x26;&#x26; Object.prototype.toString.call(chunk) !== &#x27;[object Array]&#x27;) ? chunk.text : chunk;
+    if (!_chunk || Object.prototype.toString.call(_chunk) !== &#x27;[object Array]&#x27;) {
+      return callback(new Error(&#x27;Chunk is not an array &#x27; + JSON.stringify(chunk)));
+    }
+    if (options.cache) {
+      _freq.add(_chunk);
+      return callback();
+    }
+    return callback(null, FreqDist(_chunk));
+  }, function (callback) {
+    if (options.cache) {
+      this.push(_freq);
+    }
+    return callback();
+  });
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var es = require(&#x27;event-stream&#x27;);
+
+fs.createReadStream(&#x27;./pride_prejudice.txt&#x27;)
+.pipe(es.split())
+.pipe(nlp.tokenizer())
+.pipe(nlp.stopwords())
+.pipe(nlp.stemmer())
+.pipe(nlp.<span class="apidocCodeKeywordSpan">frequency</span>())
+.on(&#x27;data&#x27;, function (freqDist) {
+  console.log(freqDist.slice(0, 10));
+})
+.on(&#x27;error&#x27;, function (err) {
+  console.error(err);
+});
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.idf" id="apidoc.element.nlp-toolkit.idf">
+        function <span class="apidocSignatureSpan">nlp-toolkit.</span>idf
+        <span class="apidocSignatureSpan">(text, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function idf(text, options) {
+
+  if (!options &#x26;&#x26; Object.prototype.toString.call(text) !== &#x27;[object Array]&#x27;) {
+    options = text;
+    text = &#x27;&#x27;;
+  }
+
+  options = options || {};
+
+  if (text) {
+    return Idf(text);
+  }
+
+  var _idf = Idf();
+
+  return through2.obj(function (chunk, enc, callback) {
+
+    var _chunk = (chunk.hasOwnProperty(&#x27;text&#x27;)) ? chunk.text : chunk;
+    if (!_chunk || Object.prototype.toString.call(_chunk) !== &#x27;[object Array]&#x27; &#x26;&#x26; !_chunk.hasOwnProperty(&#x27;tokens&#x27;)) {
+      return callback(new Error(&#x27;Cannot use document &#x27; + JSON.stringify(chunk)));
+    }
+
+    _idf.add(_chunk);
+
+    return callback();
+
+  }, function (callback) {
+    this.push(_idf);
+    return callback();
+  });
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.prepare" id="apidoc.element.nlp-toolkit.prepare">
+        function <span class="apidocSignatureSpan">nlp-toolkit.</span>prepare
+        <span class="apidocSignatureSpan">(fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function prepare(fn) {
+  fn = (typeof fn === &#x27;function&#x27;) ? fn : function (chunk) { return chunk; };
+  return through2.obj(function (chunk, enc, callback) {
+    var check = fn(chunk);
+    if (check) {
+      this.push(check);
+    }
+    return callback();
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.serialize" id="apidoc.element.nlp-toolkit.serialize">
+        function <span class="apidocSignatureSpan">nlp-toolkit.</span>serialize
+        <span class="apidocSignatureSpan">(filename)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function max(filename) {
+  var output = fs.createWriteStream(filename);
+  return through2.obj(function (chunk, enc, callback) {
+    output.write(JSON.stringify(chunk) + &#x27;\n&#x27;);
+    return callback(null, chunk);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.stemmer" id="apidoc.element.nlp-toolkit.stemmer">
+        function <span class="apidocSignatureSpan">nlp-toolkit.</span>stemmer
+        <span class="apidocSignatureSpan">(text, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function stemmer(text, options) {
+
+  if (!options &#x26;&#x26; Object.prototype.toString.call(text) !== &#x27;[object Array]&#x27;) {
+    options = text;
+    text = &#x27;&#x27;;
+  }
+
+  options = options || {};
+  options.defaultStemmer = options.defaultStemmer || DEFAULT_STEMMER;
+
+  if (!stemmerCache.default) {
+    stemmerCache.default = new stemmerLookup[options.defaultStemmer]();
+  }
+
+  var getLang = function () {
+    return &#x27;default&#x27;;
+  };
+
+  if (options.lang) {
+    if (typeof options.lang === &#x27;function&#x27;) {
+      getLang = options.lang;
+    } else {
+      getLang = function () {
+        return options.lang;
+      };
+    }
+  }
+
+  if (text) {
+    return stemWords(text, options.lang || options.defaultStemmer);
+  }
+
+  function stemWords(text, lang) {
+    if (!stemmerLookup.hasOwnProperty(lang) &#x26;&#x26; lang !== &#x27;default&#x27;) {
+      console.log(lang + &#x27; is not a supported language for stemming.&#x27;);
+      return text;
+    }
+    if (!stemmerCache.hasOwnProperty(lang)) {
+      stemmerCache[lang] = new stemmerLookup[lang]();
+    }
+    return text.map(function (token) {
+      return stemmerCache[lang].stemWord(token);
+    });
+  }
+
+  debug(&#x27;defaultStemmer&#x27;, options.defaultStemmer);
+
+  return through2.obj(function (chunk, enc, callback) {
+
+    var _chunk = (typeof chunk === &#x27;object&#x27; &#x26;&#x26; Object.prototype.toString.call(chunk) !== &#x27;[object Array]&#x27;) ? chunk.text : chunk;
+    if (!_chunk || Object.prototype.toString.call(_chunk) !== &#x27;[object Array]&#x27;) {
+      return callback(new Error(&#x27;Chunk is not an array &#x27; + JSON.stringify(chunk)));
+    }
+
+    var tokens = stemWords(_chunk, getLang(chunk));
+
+    var response;
+    if (Object.prototype.toString.call(chunk) !== &#x27;[object Array]&#x27;) {
+      chunk.text = tokens;
+      response = chunk;
+    } else {
+      response = tokens;
+    }
+
+    return callback(null, response);
+
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var fs = require(&#x27;fs&#x27;);
+var es = require(&#x27;event-stream&#x27;);
+
+fs.createReadStream(&#x27;./pride_prejudice.txt&#x27;)
+.pipe(es.split())
+.pipe(nlp.tokenizer())
+.pipe(nlp.stopwords())
+.pipe(nlp.<span class="apidocCodeKeywordSpan">stemmer</span>())
+.pipe(nlp.frequency())
+.on(&#x27;data&#x27;, function (freqDist) {
+  console.log(freqDist.slice(0, 10));
+})
+.on(&#x27;error&#x27;, function (err) {
+  console.error(err);
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.stopwords" id="apidoc.element.nlp-toolkit.stopwords">
+        function <span class="apidocSignatureSpan">nlp-toolkit.</span>stopwords
+        <span class="apidocSignatureSpan">(text, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function stopwords(text, options) {
+
+  if (!options &#x26;&#x26; Object.prototype.toString.call(text) !== &#x27;[object Array]&#x27;) {
+    options = text;
+    text = &#x27;&#x27;;
+  }
+
+  options = options || {};
+  options.defaultLang = options.defaultLang || DEFAULT_LANG;
+  options.defaultFilename = options.defaultFilename || getFilename(options.defaultLang);
+  options.additionalWords = options.additionalWords || {};
+
+  if (Object.prototype.toString.call(options.additionalWords) === &#x27;[object Array]&#x27;) {
+    options.additionalWords = {
+      all: options.additionalWords
+    };
+  } else {
+    options.additionalWords.all = (options.additionalWords.all) ? [].concat(options.additionalWords.all) : [];
+    options.additionalWords.default = (options.additionalWords.default) ? [].concat(options.additionalWords.default) : [];
+  }
+
+  var getLang = function () {
+    return &#x27;default&#x27;;
+  };
+
+  if (options.lang) {
+    if (typeof options.lang === &#x27;function&#x27;) {
+      getLang = options.lang;
+    } else {
+      getLang = function () {
+        return options.lang;
+      };
+    }
+  }
+
+  stopwordsCache.default = getStopwordsWrapper(options.defaultFilename, options.additionalWords, &#x27;default&#x27;);
+
+  if (text) {
+    return removeStopwords(text, options.lang || options.defaultLang);
+  }
+
+  debug(&#x27;defaultLang&#x27;, options.defaultLang);
+  debug(&#x27;defaultFilename&#x27;, options.defaultFilename);
+
+  function removeStopwords(text, lang) {
+    if (!stopwordsCache.hasOwnProperty(lang)) {
+      stopwordsCache[lang] = getStopwordsWrapper(getFilename(lang), options.additionalWords, lang);
+    }
+    return stopwordsCache[lang]()
+    .then(function (stopwordsCache) {
+      var tokens = text.filter(function (token) {
+        return !stopwordsCache.hasOwnProperty(token);
+      });
+      return tokens;
+    });
+  }
+
+  return through2.obj(function (chunk, enc, callback) {
+
+    var _chunk = (typeof chunk === &#x27;object&#x27; &#x26;&#x26; Object.prototype.toString.call(chunk) !== &#x27;[object Array]&#x27;) ? chunk.text : chunk;
+    if (!_chunk || Object.prototype.toString.call(_chunk) !== &#x27;[object Array]&#x27;) {
+      return callback(new Error(&#x27;Chunk is not an array &#x27; + JSON.stringify(chunk)));
+    }
+
+    removeStopwords(_chunk, getLang(chunk))
+    .then(function (tokens) {
+      var response;
+      if (Object.prototype.toString.call(chunk) !== &#x27;[object Array]&#x27;) {
+        chunk.text = tokens;
+        response = chunk;
+      } else {
+        response = tokens;
+      }
+      return callback(null, response);
+    })
+    .catch(callback);
+
+  });
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var nlp = require(&#x27;nlp-toolkit&#x27;);
+var fs = require(&#x27;fs&#x27;);
+var es = require(&#x27;event-stream&#x27;);
+
+fs.createReadStream(&#x27;./pride_prejudice.txt&#x27;)
+.pipe(es.split())
+.pipe(nlp.tokenizer())
+.pipe(nlp.<span class="apidocCodeKeywordSpan">stopwords</span>())
+.pipe(nlp.stemmer())
+.pipe(nlp.frequency())
+.on(&#x27;data&#x27;, function (freqDist) {
+console.log(freqDist.slice(0, 10));
+})
+.on(&#x27;error&#x27;, function (err) {
+console.error(err);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.tokenizer" id="apidoc.element.nlp-toolkit.tokenizer">
+        function <span class="apidocSignatureSpan">nlp-toolkit.</span>tokenizer
+        <span class="apidocSignatureSpan">(text, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function tokenizer(text, options) {
+
+  if (!options &#x26;&#x26; typeof text === &#x27;object&#x27;) {
+    options = text;
+    text = &#x27;&#x27;;
+  }
+
+  options = options || {};
+  options.characters = (options.characters instanceof RegExp) ? options.characters : DEFAULT_CHARACTERS;
+  options.separator = (options.separator instanceof RegExp) ? options.separator : DEFAULT_SEPARATOR;
+  options.eliminateNumbers = (options.hasOwnProperty(&#x27;eliminateNumbers&#x27;)) ? Boolean(options.eliminateNumbers) : DEFAULT_ELIMINATE_NUMBERS
+;
+  options.toLowerCase = (options.hasOwnProperty(&#x27;toLowerCase&#x27;)) ? Boolean(options.toLowerCase) : DEFAULT_TOLOWERCASE;
+  options.emptyStrings = (options.hasOwnProperty(&#x27;emptyStrings&#x27;)) ? Boolean(options.emptyStrings) : DEFAULT_EMPTY_STRINGS;
+
+  debug(&#x27;characters&#x27;, options.characters);
+  debug(&#x27;separator&#x27;, options.separator);
+  debug(&#x27;eliminateNumbers&#x27;, options.eliminateNumbers);
+  debug(&#x27;toLowerCase&#x27;, options.toLowerCase);
+  debug(&#x27;emptyStrings&#x27;, options.emptyStrings);
+
+  if (text) {
+    return tokenize(text, options);
+  }
+
+  return through2.obj(function (chunk, enc, callback) {
+
+    var _chunk = (chunk.hasOwnProperty(&#x27;text&#x27;)) ? chunk.text : chunk;
+
+    if (typeof _chunk !== &#x27;string&#x27;) {
+      return callback(new Error(&#x27;Chunk is not a string &#x27; + JSON.stringify(chunk)));
+    }
+
+    var tokens = tokenize(_chunk, options);
+
+    var response;
+
+    if (typeof chunk === &#x27;object&#x27;) {
+      chunk.text = tokens;
+      response = chunk;
+    } else {
+      response = tokens;
+    }
+
+    return callback(null, response);
+
+  });
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```javascript
+var nlp = require(&#x27;nlp-toolkit&#x27;);
+var fs = require(&#x27;fs&#x27;);
+var es = require(&#x27;event-stream&#x27;);
+
+fs.createReadStream(&#x27;./pride_prejudice.txt&#x27;)
+.pipe(es.split())
+.pipe(nlp.<span class="apidocCodeKeywordSpan">tokenizer</span>())
+.pipe(nlp.stopwords())
+.pipe(nlp.stemmer())
+.pipe(nlp.frequency())
+.on(&#x27;data&#x27;, function (freqDist) {
+  console.log(freqDist.slice(0, 10));
+})
+.on(&#x27;error&#x27;, function (err) {
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nlp-toolkit.calculate" id="apidoc.module.nlp-toolkit.calculate">module nlp-toolkit.calculate</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.calculate.accuracy" id="apidoc.element.nlp-toolkit.calculate.accuracy">
+        function <span class="apidocSignatureSpan">nlp-toolkit.calculate.</span>accuracy
+        <span class="apidocSignatureSpan">(data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function accuracy(data) {
+  return data.map(function (classifier) {
+    return classifier.map(function (_set) {
+      return _set.reduce(calculateSentences, {
+        total: 0,
+        positive: 0,
+        negative: 0
+      });
+    }).reduce(calculateSets, {
+      total: 0,
+      positive: 0,
+      negative: 0
+    });
+  }).map(function (result) {
+    result.accuracy = Math.round(result.positive * 100 / result.total) / 100;
+    return result;
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.calculate.derivation" id="apidoc.element.nlp-toolkit.calculate.derivation">
+        function <span class="apidocSignatureSpan">nlp-toolkit.calculate.</span>derivation
+        <span class="apidocSignatureSpan">(data, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function derivation(data, options) {
+  var derivs = options.derivation || 1;
+  return data.map(function (classifier) {
+    var results = {
+      lost: 0,
+      positives: 0,
+      negatives: 0,
+      won: 0,
+      positivesWon: 0,
+      negativesWon: 0
+    };
+    classifier.forEach(function (_set) {
+      _set.forEach(function (entry) {
+        var guess = entry.guess.category || entry.guess;
+        entry.guess.distribution.sort(function (a, b) {
+          return (a.prob &#x3e; b.prob) ? -1 : 1;
+        });
+        var _deriv = math.std(entry.guess.distribution.map(function (cat) {
+          return cat.prob;
+        }));
+        if (entry.guess.distribution[0].prob - (_deriv * derivs) &#x3c;= entry.guess.distribution[1].prob) {
+          results.lost++;
+          if (guess === entry.feature) {
+            results.positives++;
+          } else {
+            results.negatives++;
+          }
+        } else {
+          results.won++;
+          if (guess === entry.feature) {
+            results.positivesWon++;
+          } else {
+            results.negativesWon++;
+          }
+        }
+      });
+    });
+    results.positives = results.positives / results.lost;
+    results.negatives = results.negatives / results.lost;
+    results.positivesWon = results.positivesWon / results.won;
+    results.negativesWon = results.negativesWon / results.won;
+    return results;
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.calculate.features" id="apidoc.element.nlp-toolkit.calculate.features">
+        function <span class="apidocSignatureSpan">nlp-toolkit.calculate.</span>features
+        <span class="apidocSignatureSpan">(data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function features(data) {
+  return data.map(function (classifier) {
+    return classifier.map(function (_set) {
+      return _set.reduce(calculateFeatures, {});
+    }).reduce(calculateSets, {});
+  }).map(function (result) {
+    for (var key in result) {
+      var entry = result[key];
+      entry.precision = Math.round(entry.positive * 100 / entry.total) / 100;
+      entry.accuracy = (Math.round(entry.positive * 100 / (entry.negative + entry.positive)) / 100) || 0;
+    }
+    return Object.keys(result).map(function (entry) {
+      return {
+        feature: entry,
+        total: result[entry].total,
+        positive: result[entry].positive,
+        negative: result[entry].negative,
+        precision: result[entry].precision,
+        accuracy: result[entry].accuracy
+      };
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.calculate.texts" id="apidoc.element.nlp-toolkit.calculate.texts">
+        function <span class="apidocSignatureSpan">nlp-toolkit.calculate.</span>texts
+        <span class="apidocSignatureSpan">(data, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function texts(data, options) {
+  options = options || {};
+  var amount = options.amount || 5;
+  return data.map(function (classifier) {
+    var results = {};
+    classifier.forEach(function (_set) {
+      _set.forEach(function (entry) {
+        var guess = entry.guess.category || entry.guess;
+        var feature = entry.feature;
+        if (guess == feature) {
+          var dist = entry.guess.distribution.filter(function (prob) {
+            return prob.cat === guess
+          })[0]
+          if (dist) {
+            if (!results.hasOwnProperty(guess)) {
+              results[guess] = [];
+            }
+            results[guess].push({
+              prob: dist.prob,
+              original: entry.guess.original
+            });
+          }
+        }
+      });
+    });
+    // for (var key in results) {
+    //   results[key].sort(function (a, b) {
+    //     return (a.prob &#x3e; b.prob) ? -1 : 1;
+    //   });
+    //   var obj = {
+    //     top: results[key].slice(0, amount),
+    //     bottom: results[key].slice(0 - amount)
+    //   };
+    //   results[key] = obj;
+    // }
+    return results;
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nlp-toolkit.classifiers" id="apidoc.module.nlp-toolkit.classifiers">module nlp-toolkit.classifiers</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.classifiers.bayes" id="apidoc.element.nlp-toolkit.classifiers.bayes">
+        function <span class="apidocSignatureSpan">nlp-toolkit.classifiers.</span>bayes
+        <span class="apidocSignatureSpan">(trainingSet)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function bayesClassifier(trainingSet) {
+  var classifier = bayes();
+  return {
+    learn: function learn(sentence, feature) {
+      var _sentence = (typeof sentence === &#x27;object&#x27; &#x26;&#x26; Object.prototype.toString.call(sentence) !== &#x27;[object Array]&#x27;) ? sentence
+.text : sentence;
+      if (typeof _sentence !== &#x27;string&#x27;) {
+        _sentence = _sentence.join(&#x27; &#x27;);
+      }
+      classifier.learn(_sentence, feature);
+    },
+    classify: function classify(sentence) {
+      var _sentence = (typeof sentence === &#x27;object&#x27; &#x26;&#x26; Object.prototype.toString.call(sentence) !== &#x27;[object Array]&#x27;) ? sentence
+.text : sentence;
+      if (typeof _sentence !== &#x27;string&#x27;) {
+        _sentence = _sentence.join(&#x27; &#x27;);
+      }
+      return classifier.categorize(_sentence);
+    }
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nlp-toolkit.components" id="apidoc.module.nlp-toolkit.components">module nlp-toolkit.components</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.components.FreqDist" id="apidoc.element.nlp-toolkit.components.FreqDist">
+        function <span class="apidocSignatureSpan">nlp-toolkit.components.</span>FreqDist
+        <span class="apidocSignatureSpan">(_text)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function FreqDist(_text) {
+
+  var _cache = {};
+  var _ordered;
+  var _size;
+  var _count;
+  var _tokens;
+
+  if (_text) {
+    add(_text);
+  }
+
+  function add(_text, _count) {
+    _reset();
+
+    if (_text.hasOwnProperty(&#x27;merge&#x27;) &#x26;&#x26; typeof _text[&#x27;merge&#x27;] === &#x27;function&#x27;) {
+      _cache = _text.merge(_cache);
+      return this;
+    }
+
+    _text = [].concat(_text);
+    if (typeof _count === &#x27;undefined&#x27;) {
+      _count = 1;
+    }
+    _text.forEach(function addToken(_token) {
+      if (!_cache.hasOwnProperty(_token)) {
+        _cache[_token] = 0;
+      }
+      _cache[_token] += _count;
+    });
+    return this;
+  }
+
+  function merge(external) {
+    for (var key in _cache) {
+      if (!external.hasOwnProperty(key)) {
+        external[key] = 0;
+      }
+      external[key] += _cache[key];
+    }
+    return external;
+  }
+
+  function count(token) {
+    if (token) {
+      return (_cache.hasOwnProperty(token)) ? _cache[token] : 0;
+    }
+    return (typeof _count !== &#x27;undefined&#x27;) ? _count : _count = Object.keys(_cache).reduce(function (p, c) {
+      return p + _cache[c];
+    }, 0);
+  }
+
+  function range(start, end) {
+    start = (typeof start !== &#x27;undefined&#x27;) ? start : 0;
+    end = (typeof end !== &#x27;undefined&#x27;) ? end : size();
+    if (typeof _ordered === &#x27;undefined&#x27;) {
+      var __count = count();
+      _ordered = tokens().map(function (token) {
+        return {
+          name: token,
+          count: _cache[token],
+          tf: _cache[token] / __count
+        };
+      });
+      _ordered.sort(function (a, b) {
+        return a.count &#x3e; b.count ? 1 : -1;
+      });
+    }
+    return _ordered.slice(start, end);
+  }
+
+  function size() {
+    return (typeof _size !== &#x27;undefined&#x27;) ? _size : _size = Object.keys(_cache).length;
+  }
+
+  function tokens() {
+    return (typeof _tokens !== &#x27;undefined&#x27;) ? _tokens : _tokens = Object.keys(_cache);
+  }
+
+  function _reset() {
+    _count = undefined;
+    _ordered = undefined;
+    _size = undefined;
+    _tokens = undefined;
+  }
+
+  return {
+    add: add,
+    count: count,
+    merge: merge,
+    range: range,
+    size: size,
+    tokens: tokens
+  };
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.components.Idf" id="apidoc.element.nlp-toolkit.components.Idf">
+        function <span class="apidocSignatureSpan">nlp-toolkit.components.</span>Idf
+        <span class="apidocSignatureSpan">(freqDists)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Idf(freqDists) {
+
+  var _cache = {};
+  var _ordered;
+  var _size;
+  var _tokens;
+  var documents = 0;
+
+  if (freqDists) {
+    add(freqDists);
+  }
+
+  function add(freqDists) {
+    _reset();
+    freqDists = [].concat(freqDists);
+    freqDists.forEach(function (freqDist) {
+      documents += 1;
+      var _freqDist = (freqDist.hasOwnProperty(&#x27;tokens&#x27;) &#x26;&#x26; typeof freqDist.tokens === &#x27;function&#x27;) ? freqDist : FreqDist(freqDist
+);
+      _freqDist.tokens().forEach(function (token) {
+        if (!_cache.hasOwnProperty(token)) {
+          _cache[token] = 0;
+        }
+        _cache[token] += 1;
+      });
+    });
+    return this;
+  }
+
+  function get(token) {
+    if (!_cache.hasOwnProperty(token)) {
+      return 0;
+    }
+    return Math.log(documents / _cache[token]);
+  }
+
+  function range(start, end) {
+    start = (typeof start !== &#x27;undefined&#x27;) ? start : 0;
+    end = (typeof end !== &#x27;undefined&#x27;) ? end : size() - 1;
+    if (typeof _ordered === &#x27;undefined&#x27;) {
+      _ordered = tokens().map(function (token) {
+        return {
+          name: token,
+          count: _cache[token],
+          idf: get(token)
+        };
+      });
+      _ordered.sort(function (a, b) {
+        return a.count &#x3e; b.count ? 1 : -1;
+      });
+    }
+    return _ordered.slice(start, end);
+  }
+
+  function size() {
+    return (typeof _size !== &#x27;undefined&#x27;) ? _size : _size = tokens().length;
+  }
+
+  function tokens() {
+    return (typeof _tokens !== &#x27;undefined&#x27;) ? _tokens : _tokens = Object.keys(_cache);
+  }
+
+  function _reset() {
+    _size = undefined;
+    _tokens = undefined;
+  }
+
+  return {
+    add: add,
+    get: get,
+    range: range,
+    size: size,
+    tokens: tokens
+  };
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nlp-toolkit.filters" id="apidoc.module.nlp-toolkit.filters">module nlp-toolkit.filters</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.filters.max" id="apidoc.element.nlp-toolkit.filters.max">
+        function <span class="apidocSignatureSpan">nlp-toolkit.filters.</span>max
+        <span class="apidocSignatureSpan">(value)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function max(value) {
+  value = value || DEFAULT_MAX;
+  return through2.obj(function (chunk, enc, callback) {
+    var _chunk = (typeof chunk === &#x27;object&#x27; &#x26;&#x26; Object.prototype.toString.call(chunk) !== &#x27;[object Array]&#x27;) ? chunk.text : chunk;
+    if (!_chunk || Object.prototype.toString.call(_chunk) !== &#x27;[object Array]&#x27;) {
+      return callback(new Error(&#x27;Chunk is not an array &#x27; + JSON.stringify(chunk)));
+    }
+    if (_chunk.length &#x3e; value) {
+      return callback();
+    }
+    return callback(null, chunk);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nlp-toolkit.filters.min" id="apidoc.element.nlp-toolkit.filters.min">
+        function <span class="apidocSignatureSpan">nlp-toolkit.filters.</span>min
+        <span class="apidocSignatureSpan">(value)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function min(value) {
+  value = value || DEFAULT_MIN;
+
+  debug(&#x27;value&#x27;, value);
+
+  return through2.obj(function (chunk, enc, callback) {
+    var _chunk = (typeof chunk === &#x27;object&#x27; &#x26;&#x26; Object.prototype.toString.call(chunk) !== &#x27;[object Array]&#x27;) ? chunk.text : chunk;
+    if (!_chunk || Object.prototype.toString.call(_chunk) !== &#x27;[object Array]&#x27;) {
+      return callback(new Error(&#x27;Chunk is not an array &#x27; + JSON.stringify(chunk)));
+    }
+    if (_chunk.length &#x3c; value) {
+      return callback();
+    }
+    return callback(null, chunk);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
